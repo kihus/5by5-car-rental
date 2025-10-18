@@ -1,12 +1,19 @@
-﻿namespace LocadoraCarros;
+﻿using LocadoraCarros.Entities.Enums;
 
-internal abstract class Vehicle(int id, string model, string manufacturer, int manufacturerYear, Color color, string licensePlate)
+namespace LocadoraCarros.Entities.Base;
+
+internal abstract class AbstractVehicle(int id, string model, string manufacturer, int manufacturerYear,
+                                        Color color, decimal dailyRentalPrice, int mileage, VehicleType vehicleType, string licensePlate)
 {
     public int Id { get; init; } = id;
     public string Model { get; private set; } = model;
     public string Manufacturer { get; private set; } = manufacturer;
     public Color Color { get; private set; } = color;
     public int ManufacturerYear { get; private set; } = manufacturerYear;
+    public decimal DailyRentalPrice { get; private set; } = dailyRentalPrice;
+    public int Mileage { get; private set; } = mileage;
+    public bool IsAvaliabe { get; private set; } = false;
+    public VehicleType VehicleType { get; private set; } = vehicleType;
     public string LicensePlate
     {
         get;

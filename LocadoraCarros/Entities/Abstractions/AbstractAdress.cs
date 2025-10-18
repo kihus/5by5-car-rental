@@ -1,6 +1,6 @@
-﻿namespace LocadoraCarros;
+﻿namespace LocadoraCarros.Entities.Base;
 
-public class Adress(string street, int number, string neighborhood, string city, string country)
+public class AbstractAdress(string street, int number, string neighborhood, string city, string country)
 {
     public string Street { get; private set; } = street;
     public int Number { get; private set; } = number;
@@ -10,7 +10,7 @@ public class Adress(string street, int number, string neighborhood, string city,
     public string Country { get; private set; } = country;
 
 
-    public Adress(string street, int number, string neighborhood, string city, string country, string complement)
+    public AbstractAdress(string street, int number, string neighborhood, string city, string country, string complement)
         : this (street, number, neighborhood, city, country)
     {
         Complement = complement;

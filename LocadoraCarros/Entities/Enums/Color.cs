@@ -1,4 +1,4 @@
-﻿namespace LocadoraCarros
+﻿namespace LocadoraCarros.Entities.Enums
 {
     internal enum Color
     {
