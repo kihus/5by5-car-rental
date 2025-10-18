@@ -1,4 +1,5 @@
 ﻿namespace LocadoraCarros;
+
 public class Adress(string street, int number, string neighborhood, string city, string country)
 {
     public string Street { get; private set; } = street;
