@@ -3,7 +3,8 @@
 namespace LocadoraCarros.Entities.Base;
 
 internal abstract class AbstractVehicle(int id, string model, string manufacturer, int manufacturerYear,
-                                        Color color, decimal dailyRentalPrice, int mileage, VehicleType vehicleType, string licensePlate)
+                                        Color color, decimal dailyRentalPrice, int mileage, 
+                                        VehicleType vehicleType, string licensePlate)
 {
     public int Id { get; init; } = id;
     public string Model { get; private set; } = model;
@@ -12,7 +13,7 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
     public int ManufacturerYear { get; private set; } = manufacturerYear;
     public decimal DailyRentalPrice { get; private set; } = dailyRentalPrice;
     public int Mileage { get; private set; } = mileage;
-    public bool IsAvaliabe { get; private set; } = false;
+    public bool IsAvailable { get; private set; } = false;
     public VehicleType VehicleType { get; private set; } = vehicleType;
     public string LicensePlate
     {
@@ -34,13 +35,16 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
 
     public override string ToString()
     {
-        return $"\n" +
-            $"Vehicle\n" +
-            $"Model: {Model}\n" +
-            $"License Plate: {LicensePlate}\n" +
-            $"Color: {Color}\n" +
-            $"Manufacturer: {Manufacturer}\n" +
-            $"Manufacturer Year: {ManufacturerYear}\n";
+
+        return $"[Vehicle]\n\r" +
+               $"Model: {Model}\n\r" +
+               $"License Plate: {LicensePlate}\n\r" +
+               $"Color: {Color}\n\r" +
+               $"Manufacturer: {Manufacturer}\n\r" +
+               $"Manufacturer Year: {ManufacturerYear}\n\r" +
+               $"Daily rental price: {DailyRentalPrice}\n\r" +
+               $"Mileage: {Mileage}\n\r" +
+               $"Situation: {(IsAvailable ? "Avaliabe" : "Unavailable")}\n";
     }
 
 }

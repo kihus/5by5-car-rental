@@ -1,20 +1,22 @@
-﻿namespace LocadoraCarros.Entities.Base;
+﻿using LocadoraCarros.Entities.Enums;
 
-abstract class AbstractClient(int id, string name, string surname, DateTime birthDate, AbstractAdress adress)
+namespace LocadoraCarros.Entities.Base;
+
+abstract class AbstractClient(int id, string name, string surname, DateTime birthDate, Adress adress, ClientType clientType)
 {
     public int Id { get; init; } = id;
     public string Name { get; private set; } = name;
     public string Surname { get; private set; } = surname;
     public DateTime BirthDate { get; init; } = birthDate;
-    public AbstractAdress Adress { get; private set; } = adress;
+    public Adress Adress { get; private set; } = adress;
+    public ClientType ClientType{ get; private set; } = clientType;
 
     public override string ToString()
     {
         return $"\n" +
-            $"Client\n" +
+            $"[Client]\n" +
             $"Name: {Name}\n" +
             $"Surname: {Surname}\n" +
-            $"Birth Date: {BirthDate}\n" +
-            $"{Adress}";
+            $"Birth Date: {BirthDate:d}\n";
     }
 }

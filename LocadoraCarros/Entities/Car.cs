@@ -24,11 +24,11 @@ internal class Car : AbstractVehicle
 
     public override string ToString()
     {
-        return base.ToString() + "\n\r" +
-            "Car\n\r" +
-            $"Number of doors: {NumberOfDoors}\n\r" +
-            $"Passenger capacity: {PassengerCapacity}\n\r" +
-            $"Trunk capacity liters: {TrunkCapacityLiters}\n\r" +
-            $"{(HasAirCondiotioning ? "Has air condiotioning" : "Don't have air condiotioning")}";
+        return "\nCar\n\r" +
+             $"{base.ToString()}\n\r" +
+             $"Number of doors: {NumberOfDoors}\n\r" +
+             $"Passenger capacity: {PassengerCapacity}\n\r" +
+             $"Trunk capacity liters: {TrunkCapacityLiters}\n\r" +
+             $"{(HasAirCondiotioning ? "Has air condiotioning" : "Don't have air condiotioning")}\n";
     }
 }
