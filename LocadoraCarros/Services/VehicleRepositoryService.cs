@@ -34,13 +34,13 @@ internal class VehicleRepositoryService : IVehicleRepository
 
     public void GetAll()
     {
-        if(_cars == null)
+        if (_cars == null)
         {
             Console.WriteLine("Dont have cars");
         }
         else
         {
-            foreach(var item in _cars)
+            foreach (var item in _cars)
             {
                 Console.WriteLine(item);
             }
@@ -73,16 +73,101 @@ internal class VehicleRepositoryService : IVehicleRepository
 
     public void GetById(int id)
     {
-        throw new NotImplementedException();
+        AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            Console.WriteLine(idVehicle);
+            return;
+        }
+
+        idVehicle = _motorcycles.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            Console.WriteLine(idVehicle);
+            return;
+        }
+
+        idVehicle = _truck.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            Console.WriteLine(idVehicle);
+            return;
+        }
     }
 
     public void GetByModel(string model)
     {
-        throw new NotImplementedException();
+        AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Model == model);
+        if (idVehicle != null)
+        {
+            Console.WriteLine(idVehicle);
+            return;
+        }
+
+        idVehicle = _motorcycles.FirstOrDefault(x => x.Model == model);
+        if (idVehicle != null)
+        {
+            Console.WriteLine(idVehicle);
+            return;
+        }
+
+        idVehicle = _truck.FirstOrDefault(x => x.Model == model);
+        if (idVehicle != null)
+        {
+            Console.WriteLine(idVehicle);
+            return;
+        }
     }
 
-    public void RemoveVehicle(AbstractVehicle vehicle)
+    public void RemoveVehicleById(int id)
     {
-        throw new NotImplementedException();
+        AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            _cars.Remove((Car)idVehicle);
+            return;
+        }
+
+        idVehicle = _motorcycles.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            _motorcycles.Remove((Motorcycle)idVehicle);
+            return;
+        }
+
+        idVehicle = _truck.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            _truck.Remove((Truck)idVehicle);
+            return;
+        }
+
+        Console.WriteLine("Vehicle doesnt exist");
+    }
+
+    public void RemoveVehicleByModel(string model)
+    {
+        AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Model == model);
+        if (idVehicle != null)
+        {
+            _cars.Remove((Car)idVehicle);
+            return;
+        }
+
+        idVehicle = _motorcycles.FirstOrDefault(x => x.Model == model);
+        if (idVehicle != null)
+        {
+            _motorcycles.Remove((Motorcycle)idVehicle);
+            return;
+        }
+
+        idVehicle = _truck.FirstOrDefault(x => x.Model == model);
+        if (idVehicle != null)
+        {
+            _truck.Remove((Truck)idVehicle);
+            return;
+        }
+
+        Console.WriteLine("Vehicle doesnt exist");
     }
 }

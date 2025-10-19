@@ -49,6 +49,13 @@ try
     var car = new Car(vehicleIdGeneratorService.GenerateId(), "sandero", "Renault", 2025, Color.Red, 138.90m, 100_000, VehicleType.Car, "abc1a12", 4, 4, 600, true);
 
     vehicle.AddCar(car);
+    Console.WriteLine("todos os carros");
+    vehicle.GetAll();
+    Console.WriteLine("Carro sendo excluido");
+    vehicle.RemoveVehicleById(car.Id);
+
+    Console.WriteLine("Mostrando carros");
+
     vehicle.GetAll();
 
 
