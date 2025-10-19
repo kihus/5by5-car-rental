@@ -11,6 +11,7 @@ abstract class AbstractClient(int id, string name, string surname, DateTime birt
     public Adress Adress { get; private set; } = adress;
     public ClientType ClientType{ get; private set; } = clientType;
 
+
     public override string ToString()
     {
         return $"\n" +

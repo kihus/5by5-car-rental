@@ -15,6 +15,6 @@ internal class LegalEntity : AbstractClient
 
     public override string ToString()
     {
-        return base.ToString() + $"CNPJ: {Cnpj}";
+        return base.ToString() + $"CNPJ: {Cnpj}\n{Adress}";
     }
 }

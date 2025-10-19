@@ -16,4 +16,9 @@ internal class VehicleRental
     {
         Trucks = truck;
     }
+
+    public VehicleRental(Individual individual)
+    {
+        Individual = individual;
+    }
 }
