@@ -18,13 +18,13 @@ internal class ClientRepositoryService : IClientRepository
     }
     public void AddClientIndividual(Individual client)
     {
-        _individuals.Add(new Individual(client.Id, client.Name, client.Surname, client.BirthDate, client.Adress, client.ClientType, client.Cpf));
+        _individuals.Add(client);
         Console.WriteLine("Succesful!");
     }
 
     public void AddClientLegalEntity(LegalEntity client)
     {
-        _legalEntities.Add(new LegalEntity(client.Id, client.Name, client.Surname, client.BirthDate, client.Adress, client.ClientType, client.Cnpj));
+        _legalEntities.Add(client);
         Console.WriteLine("Succesful!");
     }
 

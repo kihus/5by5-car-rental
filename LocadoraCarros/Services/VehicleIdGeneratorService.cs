@@ -2,7 +2,7 @@
 
 namespace LocadoraCarros.Services;
 
-internal class CarIdGeneratorService : IIdGenerator
+internal class VehicleIdGeneratorService : IIdGenerator
 {
     private static int _id = 1;
 

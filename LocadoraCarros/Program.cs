@@ -6,7 +6,7 @@ using System.Globalization;
 try
 {
     var clientIdGeneratorService = new ClientIdGeneratorService();
-    var carIdGeneratorService = new CarIdGeneratorService();
+    var vehicleIdGeneratorService = new VehicleIdGeneratorService();
 
     var adress = new Adress("Rua bonito", 132, "Jabuticaba", "07243-000", "Guarulhos", "SP", "Brasil", "Casa ao lado");
 
@@ -40,10 +40,21 @@ try
     clientManager.RemoveClientLegalEntity("51.551.332/0001-01");
     Console.WriteLine();
 
-    clientManager.GetAll(); 
+    clientManager.GetAll();
+
+
+    // Vehicle tests
+    var vehicle = new VehicleRepositoryService();
+
+    var car = new Car(vehicleIdGeneratorService.GenerateId(), "sandero", "Renault", 2025, Color.Red, 138.90m, 100_000, VehicleType.Car, "abc1a12", 4, 4, 600, true);
+
+    vehicle.AddCar(car);
+    vehicle.GetAll();
+
+
 
 }
-catch(Exception ex)
+catch (Exception ex)
 {
     Console.WriteLine(ex);
 }
