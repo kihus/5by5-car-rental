@@ -36,7 +36,7 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
     public override string ToString()
     {
 
-        return $"Vehicle\n\r" +
+        return $"[Vehicle]\n\r" +
                $"Model: {Model}\n\r" +
                $"License Plate: {LicensePlate}\n\r" +
                $"Color: {Color}\n\r" +
