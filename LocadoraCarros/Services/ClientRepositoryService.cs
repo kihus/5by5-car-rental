@@ -7,24 +7,24 @@ namespace LocadoraCarros.Services;
 
 internal class ClientRepositoryService : IClientRepository
 {
-    private List<LegalEntity> LegalEntities { get; set; }
-    private List<Individual> Individuals { get; set; }
+    private List<LegalEntity> _legalEntities { get; set; }
+    private List<Individual> _individuals { get; set; }
 
 
     public ClientRepositoryService()
     {
-        LegalEntities = new List<LegalEntity>();
-        Individuals = new List<Individual>();
+        _legalEntities = new List<LegalEntity>();
+        _individuals = new List<Individual>();
     }
     public void AddClientIndividual(Individual client)
     {
-        Individuals.Add(new Individual(client.Id, client.Name, client.Surname, client.BirthDate, client.Adress, client.ClientType, client.Cpf));
+        _individuals.Add(client);
         Console.WriteLine("Succesful!");
     }
 
     public void AddClientLegalEntity(LegalEntity client)
     {
-        LegalEntities.Add(new LegalEntity(client.Id, client.Name, client.Surname, client.BirthDate, client.Adress, client.ClientType, client.Cnpj));
+        _legalEntities.Add(client);
         Console.WriteLine("Succesful!");
     }
 
@@ -33,11 +33,11 @@ internal class ClientRepositoryService : IClientRepository
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("[Legal Entities]");
 
-        if (LegalEntities == null)
+        if (_legalEntities == null)
             Console.WriteLine("Don't have Legals entities");
         else
         {
-            foreach (var item in LegalEntities)
+            foreach (var item in _legalEntities)
             {
                 Console.WriteLine(item);
             }
@@ -48,11 +48,11 @@ internal class ClientRepositoryService : IClientRepository
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("[Individuals]");
 
-        if (Individuals == null)
+        if (_individuals == null)
             Console.WriteLine("Don't have individuals");
         else
         {
-            foreach (var item in Individuals)
+            foreach (var item in _individuals)
             {
                 Console.WriteLine(item);
             }
@@ -62,7 +62,7 @@ internal class ClientRepositoryService : IClientRepository
 
     public void GetByCNPJ(string cnpj)
     {
-        var clientCnpj = LegalEntities.Where(x => x.Cnpj == cnpj).FirstOrDefault();
+        var clientCnpj = _legalEntities.Where(x => x.Cnpj == cnpj).FirstOrDefault();
 
         if (clientCnpj == null)
             Console.WriteLine("Client not found");
@@ -72,7 +72,7 @@ internal class ClientRepositoryService : IClientRepository
 
     public void GetByCPF(string cpf)
     {
-        var clientCpf = Individuals.Where(x => x.Cpf == cpf).FirstOrDefault();
+        var clientCpf = _individuals.Where(x => x.Cpf == cpf).FirstOrDefault();
 
         if (clientCpf == null)
             Console.WriteLine("Client not found");
@@ -82,18 +82,18 @@ internal class ClientRepositoryService : IClientRepository
 
     public void RemoveClientIndividual(string cpf)
     {
-        var client = Individuals.Where(x => x.Cpf == cpf).FirstOrDefault();
+        var client = _individuals.Where(x => x.Cpf == cpf).FirstOrDefault();
         if (client != null)
-            Individuals.Remove(client);
+            _individuals.Remove(client);
         else
             Console.WriteLine("Client don`t exist");
     }
 
     public void RemoveClientLegalEntity(string cnpj)
     {
-        var client = LegalEntities.Where(x => x.Cnpj == cnpj).FirstOrDefault();
+        var client = _legalEntities.Where(x => x.Cnpj == cnpj).FirstOrDefault();
         if (client != null)
-            LegalEntities.Remove(client);
+            _legalEntities.Remove(client);
         else
             Console.WriteLine("Client don`t exist");
     }
