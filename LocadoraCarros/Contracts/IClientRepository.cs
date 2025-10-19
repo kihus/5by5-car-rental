@@ -5,10 +5,11 @@ namespace LocadoraCarros.Contracts;
 
 internal interface IClientRepository
 {
-    public void AddClient(AbstractClient client);
+    public void AddClientIndividual(Individual client);
+    public void AddClientLegalEntity(LegalEntity client);
     public void RemoveClientIndividual(string cpf);
     public void RemoveClientLegalEntity(string cnpj);
-    public Individual GetByCPF(string cpf);
-    public LegalEntity GetByCNPJ(string cnpj);
+    public void GetByCPF(string cpf);
+    public void GetByCNPJ(string cnpj);
     public void GetAll();
 }

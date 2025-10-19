@@ -13,7 +13,7 @@ public class Adress(string street, int number, string neighborhood, string zipCo
 
 
     public Adress(string street, int number, string neighborhood, string zipCode,
-                  string city, string country, string state, string complement)
+                  string city,  string state, string country, string complement)
                  : this(street, number, neighborhood, zipCode, city, state, country)
     {
         Complement = complement;
@@ -28,6 +28,7 @@ public class Adress(string street, int number, string neighborhood, string zipCo
             $"{(Complement is null ? "" : $"Complement: {Complement}\n")}" +
             $"Neighborhood: {Neighborhood}\n" +
             $"City: {City}\n" +
+            $"State: {State}\n" +
             $"Country: {Country}\n";
     }
 }

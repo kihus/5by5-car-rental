@@ -5,7 +5,6 @@ namespace LocadoraCarros.Entities;
 
 internal class Individual : AbstractClient
 {
-    private AbstractClient _client;
 
     public string Cpf { get; init; }
 
@@ -15,9 +14,8 @@ internal class Individual : AbstractClient
         Cpf = cpf;
     }
 
-
     public override string ToString()
     {
-        return base.ToString() + $"CPF: {Cpf}";
+        return base.ToString() + $"CPF: {Cpf}\n{Adress}";
     }
 }
