@@ -162,7 +162,7 @@ void MainMenu()
     Console.WriteLine("+-----+----------------------+");
 }
 
-// client "CRUD"
+// client "CRD"
 void ClientMenuSystem()
 {
     var working = true;
@@ -465,7 +465,7 @@ void RemoveClient(string optiones)
     }
 }
 
-// vehicle "CRUD"
+// vehicle "CRD"
 void VehicleMenuSystem()
 {
     var working = true;
@@ -808,7 +808,7 @@ void VehicleRentalMenuSystem()
                 Console.WriteLine("\nPress enter...");
                 Console.ReadKey();
                 break;
-                
+
             default:
                 Console.WriteLine("Command not found");
                 Console.ReadKey();
@@ -871,7 +871,17 @@ void RentVehicle()
 void ReturnVehicle()
 {
     Console.WriteLine("Vehicles to return");
-    rentalManager.VehicleManager.;
+    rentalManager.VehicleManager.IsAvaliable(false);
 
+    Console.Write("Id vehicle will be return: ");
+    var id = int.Parse(Console.ReadLine());
 
+    if(rentalManager.VehicleManager.GetById(id) == null)
+    {
+        Console.WriteLine("Vehicle not found");
+    }
+
+    var idVehicle = rentalManager.VehicleManager.GetById(id);
+
+    rentalManager.VehicleManager.VehicleAvaliable(idVehicle.Id);
 }

@@ -39,28 +39,28 @@ internal class VehicleRepositoryService : IVehicleRepository
         GetAllTrucks();
     }
 
-    public void GetById(int id)
+    public AbstractVehicle GetById(int id)
     {
         AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Id == id);
         if (idVehicle != null)
         {
-            Console.WriteLine(idVehicle);
-            return;
+            return idVehicle;
         }
 
         idVehicle = _motorcycles.FirstOrDefault(x => x.Id == id);
         if (idVehicle != null)
         {
-            Console.WriteLine(idVehicle);
-            return;
+            return idVehicle;
         }
 
         idVehicle = _truck.FirstOrDefault(x => x.Id == id);
         if (idVehicle != null)
         {
-            Console.WriteLine(idVehicle);
-            return;
+            return idVehicle;
+
         }
+
+        return null;
     }
 
     public AbstractVehicle GetByModel(string model)
