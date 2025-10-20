@@ -2,14 +2,14 @@
 
 namespace LocadoraCarros.Abstract;
 
-internal abstract class Person
+internal abstract class AbstractPerson
 {
     private string _name { get; set; }
     private DateOnly _birthDate { get; set; }
     private Contact _contact { get; set; }
     private Adress _adress { get; set; }
 
-    public Person(string name, DateOnly birthDate, Contact contact, Adress adress)
+    public AbstractPerson(string name, DateOnly birthDate, Contact contact, Adress adress)
     {
         _name = name;
         _birthDate = birthDate;

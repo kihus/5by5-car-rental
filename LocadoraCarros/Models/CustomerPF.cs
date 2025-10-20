@@ -1,5 +1,6 @@
 ﻿using LocadoraCarros.Abstract;
 
+
 namespace LocadoraCarros.Models;
 
 internal class CustomerPF(
@@ -10,7 +11,7 @@ internal class CustomerPF(
     string cnh,
     string cpf
     )
-    : Person(
+    : AbstractPerson(
         name,
         birthDate,
         contact,
