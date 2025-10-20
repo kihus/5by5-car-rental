@@ -7,7 +7,7 @@ internal class CustomerPF(
     string name,
     DateOnly birthDate,
     Contact contact,
-    Adress adress,
+    Address adress,
     string cnh,
     string cpf
     )
@@ -22,5 +22,12 @@ internal class CustomerPF(
     private string _cnh { get; set; } = cnh;
     private string _cpf { get; set; } = cpf;
 
+    
 
+    public override string ToString()
+    {
+        return $"{base.ToString()}\n" +
+            $"CNH: {_cnh}\n" +
+            $"CPF: {_cpf}\n";
+    }
 }

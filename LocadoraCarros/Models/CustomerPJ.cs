@@ -6,7 +6,7 @@ internal class CustomerPJ(
     string name, 
     DateOnly birthDate, 
     Contact contact, 
-    Adress adress, 
+    Address adress, 
     string cnpj
     ) 
     : AbstractPerson(
@@ -19,4 +19,11 @@ internal class CustomerPJ(
 
     private Guid _id { get; set; } = Guid.NewGuid();
     private string _cnpj { get; set; } = cnpj;
+
+    public override string ToString()
+    {
+        return $"Id: {_id}\n" +
+            $"{base.ToString()}\n" +
+            $"CNPJ: {_cnpj}";
+    }
 }
