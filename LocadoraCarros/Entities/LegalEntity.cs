@@ -1,5 +1,6 @@
 ﻿using LocadoraCarros.Entities.Base;
 using LocadoraCarros.Entities.Enums;
+using LocadoraCarros.Entities.Models;
 
 namespace LocadoraCarros.Entities;
 
