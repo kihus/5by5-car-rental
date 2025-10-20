@@ -63,28 +63,26 @@ internal class VehicleRepositoryService : IVehicleRepository
         }
     }
 
-    public void GetByModel(string model)
+    public AbstractVehicle GetByModel(string model)
     {
         AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Model == model);
         if (idVehicle != null)
         {
-            Console.WriteLine(idVehicle);
-            return;
+            return idVehicle;
         }
 
         idVehicle = _motorcycles.FirstOrDefault(x => x.Model == model);
         if (idVehicle != null)
         {
-            Console.WriteLine(idVehicle);
-            return;
+            return idVehicle;
         }
 
         idVehicle = _truck.FirstOrDefault(x => x.Model == model);
         if (idVehicle != null)
         {
-            Console.WriteLine(idVehicle);
-            return;
+            return idVehicle;
         }
+        return null;
     }
     public void GetByYear(int year)
     {
@@ -230,6 +228,27 @@ internal class VehicleRepositoryService : IVehicleRepository
         }
     }
 
+    public void IsAvaliable()
+    {
+        var carsAvaliable = _cars.Where(x => x.IsAvailable == true);
+        foreach(var item in carsAvaliable.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+
+
+        var motorcyclesAvaliable = _motorcycles.Where(x => x.IsAvailable == true);
+        foreach (var item in motorcyclesAvaliable.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+
+        var trucksAvaliable = _truck.Where(x => x.IsAvailable == true);
+        foreach (var item in trucksAvaliable.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+    }
     public void VehicleAvaliable(int id)
     {
         AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Id == id);

@@ -15,6 +15,6 @@ internal interface IVehicleRepository
     public void RemoveVehicleByModel(string model);
     public void GetAll();
     public void GetById(int id);
-    public void GetByModel(string model);
+    public AbstractVehicle GetByModel(string model);
     public void VehicleAvaliable(int id);
 }

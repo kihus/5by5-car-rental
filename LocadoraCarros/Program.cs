@@ -6,6 +6,7 @@ using System.Globalization;
 
 var clientIdGeneratorService = new ClientIdGeneratorService();
 var vehicleIdGeneratorService = new VehicleIdGeneratorService();
+var rentals = new List<VehicleRental>();
 
 var rentalManager = new VehicleRental();
 
@@ -35,9 +36,11 @@ try
                 break;
 
             case "2":
+                VehicleMenuSystem();
                 break;
 
             case "3":
+                VehicleRentalMenuSystem();
                 break;
 
             case "0":
@@ -61,6 +64,7 @@ catch (Exception ex)
     Console.WriteLine(ex);
 }
 
+// generics Entities
 void GenerateGenericCars()
 {
     var car = new Car(vehicleIdGeneratorService.GenerateId(), "Sandero", "Renault", 2025, Color.Red, 138.90m, 60_000, VehicleType.Car, "ACD1B12", 4, 5, 450, true);
@@ -155,18 +159,6 @@ void MainMenu()
 }
 
 // client "CRUD"
-void ClientMenu()
-{
-    Console.WriteLine("+-----+----------------------+");
-    Console.WriteLine("|  1  |       Register       |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |        Search        |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |        Remove        |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
-    Console.WriteLine("+-----+----------------------+");
-}
 void ClientMenuSystem()
 {
     var working = true;
@@ -223,6 +215,18 @@ void ClientMenuSystem()
         }
         Console.Clear();
     } while (working);
+}
+void ClientMenu()
+{
+    Console.WriteLine("+-----+----------------------+");
+    Console.WriteLine("|  1  |       Register       |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  2  |        Search        |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  3  |        Remove        |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  0  |         Exit         |");
+    Console.WriteLine("+-----+----------------------+");
 }
 void RegisterClient(string op)
 {
@@ -458,18 +462,6 @@ void RemoveClient(string optiones)
 }
 
 // vehicle "CRUD"
-void VehicleMenu()
-{
-    Console.WriteLine("+-----+----------------------+");
-    Console.WriteLine("|  1  |       Register       |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |        Search        |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |        Remove        |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
-    Console.WriteLine("+-----+----------------------+");
-}
 void VehicleMenuSystem()
 {
     var working = true;
@@ -508,14 +500,34 @@ void VehicleMenuSystem()
                 break;
 
             case "0":
+                Console.WriteLine("Return to the Main Menu.");
+                working = false;
+
+                Console.WriteLine("\nPress enter...");
+                Console.ReadKey();
                 break;
 
             default:
                 Console.WriteLine("Command not found");
+                Console.ReadKey();
                 break;
         }
 
+        Console.WriteLine("\n\nPress enter...");
+        Console.ReadKey();
     } while (working);
+}
+void VehicleMenu()
+{
+    Console.WriteLine("+-----+----------------------+");
+    Console.WriteLine("|  1  |       Register       |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  2  |        Search        |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  3  |        Remove        |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  0  |         Exit         |");
+    Console.WriteLine("+-----+----------------------+");
 }
 void RegisterVehicle(string op)
 {
@@ -683,8 +695,15 @@ void SearchVehicle(string optiones)
             Console.Write("Enter model: ");
             var model = Console.ReadLine() ?? "";
 
-            rentalManager.VehicleManager.GetByModel(model);
-
+            if (rentalManager.VehicleManager.GetByModel(model) == null)
+            {
+                Console.WriteLine("Not found");
+            }
+            else
+            {
+                var vehicleModel = rentalManager.VehicleManager.GetByModel(model);
+                Console.WriteLine(vehicleModel);
+            }
             break;
 
         case "3":
@@ -755,7 +774,88 @@ void RemoveVehicle(string opt)
     Console.ReadKey();
 }
 
-void VehicleRental()
+void VehicleRentalMenuSystem()
 {
+    var working = true;
+    do
+    {
+        VehicleRentalMenu();
+        Console.Write("-> ");
+        var option = Console.ReadLine();
 
+        Console.Clear();
+
+        switch (option)
+        {
+            case "1":
+                rentalManager.VehicleManager.IsAvaliable();
+                break;
+            case "2":
+                RentVehicle();
+                break;
+
+            case "0":
+                Console.WriteLine("Return to the Main Menu.");
+                working = false;
+
+                Console.WriteLine("\nPress enter...");
+                Console.ReadKey();
+                break;
+
+            default:
+                Console.WriteLine("Command not found");
+                Console.ReadKey();
+                break;
+        }
+    } while (working);
+}
+void VehicleRentalMenu()
+{
+    Console.WriteLine("+-----+----------------------+");
+    Console.WriteLine("|  1  |  Available Vehicles  |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  2  |      Rent Vehicle    |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  0  |         Exit         |");
+    Console.WriteLine("+-----+----------------------+");
+}
+void RentVehicle()
+{
+    Console.Write("Enter a model: ");
+    var model = Console.ReadLine() ?? "";
+
+    if(rentalManager.VehicleManager.GetByModel(model) == null)
+    {
+        Console.WriteLine("Not found");
+        Console.ReadKey();
+        return;
+    }
+
+    var vehicle = rentalManager.VehicleManager.GetByModel(model);
+
+    Console.Write("How long? (days) ");
+    var time = int.Parse(Console.ReadLine());
+
+    var total = vehicle.DailyRentalPrice * time;
+
+    Console.Write("Id Client: ");
+    var client = int.Parse(Console.ReadLine());
+
+    if(rentalManager.ClientManager.GetById(client) == null)
+    {
+        Console.WriteLine("Not found");
+        Console.ReadKey();
+        return;
+    }
+
+    var clientId = rentalManager.ClientManager.GetById(client);
+
+    vehicle.SetClientName(clientId.Name);
+
+    Console.WriteLine("Total days: " + time);
+    Console.WriteLine("Return in " + (DateTime.Now.Day + time).ToString("d"));
+    Console.WriteLine("Total Price: " + total.ToString("F2"));
+
+    rentalManager.RentalManager.RentVehicle(vehicle.Id);
+    Console.WriteLine("Vehicle rent. Thanks");
 }

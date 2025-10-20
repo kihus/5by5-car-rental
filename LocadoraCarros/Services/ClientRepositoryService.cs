@@ -80,23 +80,21 @@ internal class ClientRepositoryService : IClientRepository
         else
             Console.WriteLine(clientCpf);
     }
-    public void GetById(int id)
+    public AbstractClient GetById(int id)
     {
         AbstractClient clientId = _legalEntities.FirstOrDefault(x => x.Id == id);
         if(clientId != null)
         {
-            Console.WriteLine(clientId);
-            return;
+            return clientId;
         }
 
         clientId = _individuals.FirstOrDefault(x => x.Id == id);
         if(clientId != null)
         {
-            Console.WriteLine(clientId);
-            return;
+            return clientId;
         }
 
-        Console.WriteLine("Client not found");
+        return null;
 
     }
 

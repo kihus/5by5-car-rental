@@ -15,6 +15,7 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
     public int Mileage { get; private set; } = mileage;
     public bool IsAvailable { get; private set; } = true;
     public VehicleType VehicleType { get; private set; } = vehicleType;
+    public string ClientName { get; private set; } = null;
     public string LicensePlate
     {
         get;
@@ -36,6 +37,11 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
     public void SetIsAvaliable(bool isAvaliable)
     {
         IsAvailable = isAvaliable;
+    }
+
+    public void SetClientName(string clientName)
+    {
+        ClientName = clientName;
     }
     public override string ToString()
     {
