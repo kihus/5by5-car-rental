@@ -3,10 +3,11 @@
     internal enum Color
     {
         Red,
-        green, 
-        blue,
-        black,
-        white,
-        plate
+        Green,
+        Blue,
+        Black,
+        White,
+        Silver,
+        Other
     }
 }

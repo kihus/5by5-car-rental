@@ -34,41 +34,9 @@ internal class VehicleRepositoryService : IVehicleRepository
 
     public void GetAll()
     {
-        if (_cars == null)
-        {
-            Console.WriteLine("Dont have cars");
-        }
-        else
-        {
-            foreach (var item in _cars)
-            {
-                Console.WriteLine(item);
-            }
-        }
-
-        if (_motorcycles == null)
-        {
-            Console.WriteLine("Dont have motorcycles");
-        }
-        else
-        {
-            foreach (var item in _motorcycles)
-            {
-                Console.WriteLine(item);
-            }
-        }
-
-        if (_truck == null)
-        {
-            Console.WriteLine("Dont have cars");
-        }
-        else
-        {
-            foreach (var item in _truck)
-            {
-                Console.WriteLine(item);
-            }
-        }
+        GetAllCars();
+        GetAllMotorcycles();
+        GetAllTrucks();
     }
 
     public void GetById(int id)
@@ -169,5 +137,102 @@ internal class VehicleRepositoryService : IVehicleRepository
         }
 
         Console.WriteLine("Vehicle doesnt exist");
+    }
+
+    public void GetAllCars()
+    {
+        if (_cars == null)
+        {
+            Console.WriteLine("Dont have cars");
+        }
+        else
+        {
+            foreach (var item in _cars)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+
+    public void GetAllMotorcycles()
+    {
+        if (_motorcycles == null)
+        {
+            Console.WriteLine("Dont have motorcycles");
+        }
+        else
+        {
+            foreach (var item in _motorcycles)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+
+    public void GetAllTrucks()
+    {
+        if (_truck == null)
+        {
+            Console.WriteLine("Dont have cars");
+        }
+        else
+        {
+            foreach (var item in _truck)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+
+    public void VehicleAvaliable(int id)
+    {
+        AbstractVehicle idVehicle = _cars.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            if(idVehicle.IsAvailable == false)
+            {
+                Console.WriteLine("this car has already been rented");
+            }
+            else
+            {
+                idVehicle.SetIsAvaliable(false);
+            }
+                
+            return;
+        }
+       
+
+            idVehicle = _motorcycles.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+            if (idVehicle.IsAvailable == false)
+            {
+                Console.WriteLine("this motorcycle has already been rented");
+            }
+            else
+            {
+                idVehicle.SetIsAvaliable(false);
+            }
+
+            return;
+        }
+
+        idVehicle = _truck.FirstOrDefault(x => x.Id == id);
+        if (idVehicle != null)
+        {
+
+            if (idVehicle.IsAvailable == false)
+            {
+                Console.WriteLine("this truck has already been rented");
+            }
+            else
+            {
+                idVehicle.SetIsAvaliable(false);
+            }
+
+            return;
+        }
+
+        Console.WriteLine("Not found");
     }
 }

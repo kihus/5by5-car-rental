@@ -15,9 +15,10 @@ abstract class AbstractClient(int id, string name, string surname, DateTime birt
     public override string ToString()
     {
         return $"\n" +
-            $"[Client]\n" +
-            $"Name: {Name}\n" +
-            $"Surname: {Surname}\n" +
-            $"Birth Date: {BirthDate:d}\n";
+            $"[Client]\n\r" +
+            $"Id: {Id}\n\r" +
+            $"Name: {Name}\n\r" +
+            $"Surname: {Surname}\n\r" +
+            $"Birth Date: {BirthDate:d}\n\r";
     }
 }

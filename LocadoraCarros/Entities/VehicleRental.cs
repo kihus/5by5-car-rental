@@ -1,24 +1,23 @@
-﻿namespace LocadoraCarros.Entities;
+﻿using LocadoraCarros.Services;
+
+namespace LocadoraCarros.Entities;
 
 internal class VehicleRental
 {
-    public Car Cars { get; set; }
-    public Truck Trucks { get; set; }
-    public Motorcycle MotorCycles { get; set; }
-    public Individual Individual { get; set; }
-    public LegalEntity LegalEntity { get; set; }
+    public VehicleRepositoryService VehicleManager { get; set; }
+    public ClientRepositoryService ClientManager { get; set; }
+    public VehicleRentalService RentalManager { get; set; }
 
-    public VehicleRental(Car cars)
+    public VehicleRental()
     {
-        Cars = cars;
-    }
-    public VehicleRental(Truck truck)
-    {
-        Trucks = truck;
+        VehicleManager = new VehicleRepositoryService();
+        ClientManager = new ClientRepositoryService();
+        RentalManager = new VehicleRentalService();
     }
 
-    public VehicleRental(Individual individual)
+   public void GetAll()
     {
-        Individual = individual;
+        VehicleManager.GetAll();
+        ClientManager.GetAll();
     }
 }

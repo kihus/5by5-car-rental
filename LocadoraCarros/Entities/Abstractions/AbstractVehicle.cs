@@ -13,7 +13,7 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
     public int ManufacturerYear { get; private set; } = manufacturerYear;
     public decimal DailyRentalPrice { get; private set; } = dailyRentalPrice;
     public int Mileage { get; private set; } = mileage;
-    public bool IsAvailable { get; private set; } = false;
+    public bool IsAvailable { get; private set; } = true;
     public VehicleType VehicleType { get; private set; } = vehicleType;
     public string LicensePlate
     {
@@ -33,10 +33,15 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
 
     }
 
+    public void SetIsAvaliable(bool isAvaliable)
+    {
+        IsAvailable = isAvaliable;
+    }
     public override string ToString()
     {
 
         return $"[Vehicle]\n\r" +
+               $"Id: {Id}\n\r" +
                $"Model: {Model}\n\r" +
                $"License Plate: {LicensePlate}\n\r" +
                $"Color: {Color}\n\r" +
