@@ -86,6 +86,52 @@ internal class VehicleRepositoryService : IVehicleRepository
             return;
         }
     }
+    public void GetByYear(int year)
+    {
+        Console.WriteLine("[Cars]");
+        var cars = _cars.Where(x => x.ManufacturerYear == year);
+        foreach(var item in cars.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+
+        Console.WriteLine("[Motorcycles]");
+        var motorcycle = _motorcycles.Where(x => x.ManufacturerYear == year);
+        foreach (var item in motorcycle.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+
+        Console.WriteLine("[Trucks]");
+        var truck = _truck.Where(x => x.ManufacturerYear == year);
+        foreach (var item in truck.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+    }
+    public void GetByManufacturer(string manufacturer)
+    {
+        Console.WriteLine("[Cars]");
+        var cars = _cars.Where(x => x.Manufacturer == manufacturer);
+        foreach (var item in cars.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+
+        Console.WriteLine("[Motorcycles]");
+        var motorcycle = _motorcycles.Where(x => x.Manufacturer == manufacturer);
+        foreach (var item in motorcycle.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+
+        Console.WriteLine("[Trucks]");
+        var truck = _truck.Where(x => x.Manufacturer == manufacturer);
+        foreach (var item in truck.OrderBy(x => x.Model))
+        {
+            Console.WriteLine(item);
+        }
+    }
 
     public void RemoveVehicleById(int id)
     {

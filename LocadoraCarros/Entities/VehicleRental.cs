@@ -15,9 +15,13 @@ internal class VehicleRental
         RentalManager = new VehicleRentalService();
     }
 
-   public void GetAll()
+   public void GetAllClients()
+    {
+        ClientManager.GetAll();
+    }
+
+    public void GetAllVehicles()
     {
         VehicleManager.GetAll();
-        ClientManager.GetAll();
     }
 }
