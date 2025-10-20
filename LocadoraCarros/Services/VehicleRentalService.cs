@@ -35,5 +35,9 @@ internal class VehicleRentalService : IVehicleRental
     {
         _vehicleRepositoryService.VehicleAvaliable(id);       
     }
+    public void ReturnVehicle(int id)
+    {
+        _vehicleRepositoryService.VehicleAvaliable(id);
+    }
 
 }

@@ -228,22 +228,22 @@ internal class VehicleRepositoryService : IVehicleRepository
         }
     }
 
-    public void IsAvaliable()
+    public void IsAvaliable(bool avaliable)
     {
-        var carsAvaliable = _cars.Where(x => x.IsAvailable == true);
+        var carsAvaliable = _cars.Where(x => x.IsAvailable == avaliable);
         foreach(var item in carsAvaliable.OrderBy(x => x.Model))
         {
             Console.WriteLine(item);
         }
 
 
-        var motorcyclesAvaliable = _motorcycles.Where(x => x.IsAvailable == true);
+        var motorcyclesAvaliable = _motorcycles.Where(x => x.IsAvailable == avaliable);
         foreach (var item in motorcyclesAvaliable.OrderBy(x => x.Model))
         {
             Console.WriteLine(item);
         }
 
-        var trucksAvaliable = _truck.Where(x => x.IsAvailable == true);
+        var trucksAvaliable = _truck.Where(x => x.IsAvailable == avaliable);
         foreach (var item in trucksAvaliable.OrderBy(x => x.Model))
         {
             Console.WriteLine(item);

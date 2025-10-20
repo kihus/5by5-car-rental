@@ -59,9 +59,13 @@ try
 
 
 }
+catch (ArgumentNullException ex)
+{
+    Console.WriteLine(ex.Message);
+}
 catch (Exception ex)
 {
-    Console.WriteLine(ex);
+    Console.WriteLine(ex.Message);
 }
 
 // generics Entities
@@ -512,9 +516,6 @@ void VehicleMenuSystem()
                 Console.ReadKey();
                 break;
         }
-
-        Console.WriteLine("\n\nPress enter...");
-        Console.ReadKey();
     } while (working);
 }
 void VehicleMenu()
@@ -658,8 +659,11 @@ void RegisterVehicle(string op)
             var truck = new Truck(vehicleIdGeneratorService.GenerateId(), model, manufacturer, manufacturerYear, color, dailyRentalPrice, mileage, VehicleType.Truck, licensePlate, loadCapacityTons, numberOfAxels, fuelConsumption);
             rentalManager.VehicleManager.AddTruck(truck);
             break;
+        case "0":
 
+            break;
         default:
+            Console.WriteLine("Command not found");
             break;
     }
 }
@@ -732,6 +736,7 @@ void SearchVehicle(string optiones)
         case "0":
             break;
         default:
+            Console.WriteLine("Command not found");
             break;
     }
 
@@ -788,12 +793,14 @@ void VehicleRentalMenuSystem()
         switch (option)
         {
             case "1":
-                rentalManager.VehicleManager.IsAvaliable();
+                rentalManager.VehicleManager.IsAvaliable(true);
                 break;
             case "2":
                 RentVehicle();
                 break;
-
+            case "3":
+                Console.WriteLine("Return the vehicle");
+                break;
             case "0":
                 Console.WriteLine("Return to the Main Menu.");
                 working = false;
@@ -801,7 +808,7 @@ void VehicleRentalMenuSystem()
                 Console.WriteLine("\nPress enter...");
                 Console.ReadKey();
                 break;
-
+                
             default:
                 Console.WriteLine("Command not found");
                 Console.ReadKey();
@@ -816,6 +823,8 @@ void VehicleRentalMenu()
     Console.WriteLine("|-----+----------------------|");
     Console.WriteLine("|  2  |      Rent Vehicle    |");
     Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  3  |  Return The Vehicle  |");
+    Console.WriteLine("|-----+----------------------|");
     Console.WriteLine("|  0  |         Exit         |");
     Console.WriteLine("+-----+----------------------+");
 }
@@ -824,7 +833,7 @@ void RentVehicle()
     Console.Write("Enter a model: ");
     var model = Console.ReadLine() ?? "";
 
-    if(rentalManager.VehicleManager.GetByModel(model) == null)
+    if (rentalManager.VehicleManager.GetByModel(model) == null)
     {
         Console.WriteLine("Not found");
         Console.ReadKey();
@@ -841,7 +850,7 @@ void RentVehicle()
     Console.Write("Id Client: ");
     var client = int.Parse(Console.ReadLine());
 
-    if(rentalManager.ClientManager.GetById(client) == null)
+    if (rentalManager.ClientManager.GetById(client) == null)
     {
         Console.WriteLine("Not found");
         Console.ReadKey();
@@ -858,4 +867,11 @@ void RentVehicle()
 
     rentalManager.RentalManager.RentVehicle(vehicle.Id);
     Console.WriteLine("Vehicle rent. Thanks");
+}
+void ReturnVehicle()
+{
+    Console.WriteLine("Vehicles to return");
+    rentalManager.VehicleManager.;
+
+
 }
