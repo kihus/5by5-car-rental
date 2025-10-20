@@ -1,20 +1,21 @@
-﻿using LocadoraCarros.Entities.Enums;
+﻿using LocadoraCarros.Models.Enums;
 
-namespace LocadoraCarros.Entities.Base;
+namespace LocadoraCarros.Models.Abstractions;
 
 internal abstract class AbstractVehicle(int id, string model, string manufacturer, int manufacturerYear,
-                                        Color color, decimal dailyRentalPrice, int mileage, 
-                                        VehicleType vehicleType, string licensePlate)
+                                        EColor color, decimal dailyRentalPrice, int mileage, 
+                                        EVehicleType vehicleType, string licensePlate)
 {
     public int Id { get; init; } = id;
     public string Model { get; private set; } = model;
     public string Manufacturer { get; private set; } = manufacturer;
-    public Color Color { get; private set; } = color;
+    public EColor Color { get; private set; } = color;
     public int ManufacturerYear { get; private set; } = manufacturerYear;
     public decimal DailyRentalPrice { get; private set; } = dailyRentalPrice;
     public int Mileage { get; private set; } = mileage;
-    public bool IsAvailable { get; private set; } = false;
-    public VehicleType VehicleType { get; private set; } = vehicleType;
+    public bool IsAvailable { get; private set; } = true;
+    public EVehicleType VehicleType { get; private set; } = vehicleType;
+    public string ClientName { get; private set; } = null;
     public string LicensePlate
     {
         get;
@@ -33,10 +34,20 @@ internal abstract class AbstractVehicle(int id, string model, string manufacture
 
     }
 
+    public void SetIsAvaliable(bool isAvaliable)
+    {
+        IsAvailable = isAvaliable;
+    }
+
+    public void SetClientName(string clientName)
+    {
+        ClientName = clientName;
+    }
     public override string ToString()
     {
 
         return $"[Vehicle]\n\r" +
+               $"Id: {Id}\n\r" +
                $"Model: {Model}\n\r" +
                $"License Plate: {LicensePlate}\n\r" +
                $"Color: {Color}\n\r" +

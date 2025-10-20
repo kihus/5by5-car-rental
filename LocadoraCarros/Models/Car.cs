@@ -1,7 +1,7 @@
-﻿using LocadoraCarros.Entities.Base;
-using LocadoraCarros.Entities.Enums;
+﻿using LocadoraCarros.Models.Abstractions;
+using LocadoraCarros.Models.Enums;
 
-namespace LocadoraCarros.Entities;
+namespace LocadoraCarros.Models;
 
 internal class Car : AbstractVehicle
 {
@@ -10,8 +10,8 @@ internal class Car : AbstractVehicle
     public int TrunkCapacityLiters { get; private set; }
     public bool HasAirCondiotioning { get; private set; }
 
-    public Car(int id, string model, string manufacturer, int manufacturerYear, Color color,
-        decimal dailyRentalPrice, int mileage, VehicleType vehicleType, string licensePlate,
+    public Car(int id, string model, string manufacturer, int manufacturerYear, EColor color,
+        decimal dailyRentalPrice, int mileage, EVehicleType vehicleType, string licensePlate,
         int numberOfDoors, int passengerCapacity, int trunkCapacityLiters, bool hasAirCondiotioning)
 
     : base(id, model, manufacturer, manufacturerYear, color, dailyRentalPrice, mileage, vehicleType, licensePlate)

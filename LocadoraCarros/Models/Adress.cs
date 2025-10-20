@@ -1,4 +1,4 @@
-﻿namespace LocadoraCarros.Entities;
+﻿namespace LocadoraCarros.Models;
 
 public class Adress(string street, int number, string neighborhood, string zipCode, string city, string state, string country)
 {

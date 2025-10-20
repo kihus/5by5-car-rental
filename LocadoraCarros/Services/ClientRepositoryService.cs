@@ -1,7 +1,7 @@
 ﻿using LocadoraCarros.Contracts;
-using LocadoraCarros.Entities;
-using LocadoraCarros.Entities.Base;
-using LocadoraCarros.Entities.Enums;
+using LocadoraCarros.Models;
+using LocadoraCarros.Models.Abstractions;
+using System.Xml.Serialization;
 
 namespace LocadoraCarros.Services;
 
@@ -37,7 +37,7 @@ internal class ClientRepositoryService : IClientRepository
             Console.WriteLine("Don't have Legals entities");
         else
         {
-            foreach (var item in _legalEntities)
+            foreach (var item in _legalEntities.OrderBy(x => x.Name))
             {
                 Console.WriteLine(item);
             }
@@ -52,7 +52,7 @@ internal class ClientRepositoryService : IClientRepository
             Console.WriteLine("Don't have individuals");
         else
         {
-            foreach (var item in _individuals)
+            foreach (var item in _individuals.OrderBy(x => x.Name))
             {
                 Console.WriteLine(item);
             }
@@ -79,7 +79,57 @@ internal class ClientRepositoryService : IClientRepository
         else
             Console.WriteLine(clientCpf);
     }
+    public AbstractClient GetById(int id)
+    {
+        AbstractClient clientId = _legalEntities.FirstOrDefault(x => x.Id == id);
+        if (clientId != null)
+        {
+            return clientId;
+        }
 
+        clientId = _individuals.FirstOrDefault(x => x.Id == id);
+        if (clientId != null)
+        {
+            return clientId;
+        }
+
+        return null;
+
+    }
+
+    public void GetByName(string name)
+    {
+        foreach (var item in _legalEntities.Where(x => x.Name.Contains(name)).OrderBy(x => x.Name))
+        {
+            Console.WriteLine(item);
+        }
+
+        foreach (var item in _individuals.Where(x => x.Name.Contains(name)).OrderBy(x => x.Name))
+        {
+            Console.WriteLine(item);
+        }
+    }
+
+    public void RemoveClientById(int id)
+    {
+        var legalEntityId = _legalEntities.FirstOrDefault(x => x.Id == id);
+        if (legalEntityId != null)
+        {
+            _legalEntities.Remove(legalEntityId);
+            Console.WriteLine($"Client removed: Id: {legalEntityId.Id}, Name: {legalEntityId.Name} {legalEntityId.Surname}");
+            return;
+        }
+
+        var individualId = _individuals.FirstOrDefault(x => x.Id == id);
+        if (individualId != null)
+        {
+            _individuals.Remove(individualId);
+            Console.WriteLine($"Client removed: Id: {individualId.Id}, Name: {individualId.Name} {individualId.Surname}");
+            return;
+        }
+
+        Console.WriteLine("Client not found");
+    }
     public void RemoveClientIndividual(string cpf)
     {
         var client = _individuals.Where(x => x.Cpf == cpf).FirstOrDefault();

@@ -1,7 +1,7 @@
-﻿using LocadoraCarros.Entities.Base;
-using LocadoraCarros.Entities.Enums;
+﻿using LocadoraCarros.Models.Abstractions;
+using LocadoraCarros.Models.Enums;
 
-namespace LocadoraCarros.Entities;
+namespace LocadoraCarros.Models;
 
 internal class Truck : AbstractVehicle
 {
@@ -9,8 +9,8 @@ internal class Truck : AbstractVehicle
     public int NumberOfAxels { get; private set; }
     public double FuelConsumptionKML { get; private set; }
 
-    public Truck(int id, string model, string manufacturer, int manufacturerYear, Color color,
-        decimal dailyRentalPrice, int mileage, VehicleType vehicleType, string licensePlate,
+    public Truck(int id, string model, string manufacturer, int manufacturerYear, EColor color,
+        decimal dailyRentalPrice, int mileage, EVehicleType vehicleType, string licensePlate,
         int loadCapacityTons, int numberOfAxels, double fuelConsumptionKML)
     : base(id, model, manufacturer, manufacturerYear, color, dailyRentalPrice, mileage, vehicleType, licensePlate)
     {
