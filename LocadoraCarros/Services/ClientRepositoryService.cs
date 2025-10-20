@@ -1,5 +1,4 @@
 ﻿using LocadoraCarros.Contracts;
-using LocadoraCarros.Entities.Enums;
 using LocadoraCarros.Models;
 using LocadoraCarros.Models.Abstractions;
 using System.Xml.Serialization;
@@ -83,13 +82,13 @@ internal class ClientRepositoryService : IClientRepository
     public AbstractClient GetById(int id)
     {
         AbstractClient clientId = _legalEntities.FirstOrDefault(x => x.Id == id);
-        if(clientId != null)
+        if (clientId != null)
         {
             return clientId;
         }
 
         clientId = _individuals.FirstOrDefault(x => x.Id == id);
-        if(clientId != null)
+        if (clientId != null)
         {
             return clientId;
         }
@@ -100,12 +99,12 @@ internal class ClientRepositoryService : IClientRepository
 
     public void GetByName(string name)
     {
-        foreach(var item in _legalEntities.Where(x => x.Name == name).OrderBy(x => x.Name))
+        foreach (var item in _legalEntities.Where(x => x.Name.Contains(name)).OrderBy(x => x.Name))
         {
             Console.WriteLine(item);
         }
 
-        foreach(var item in _individuals.Where(x => x.Name == name).OrderBy(x => x.Name))
+        foreach (var item in _individuals.Where(x => x.Name.Contains(name)).OrderBy(x => x.Name))
         {
             Console.WriteLine(item);
         }
@@ -117,6 +116,7 @@ internal class ClientRepositoryService : IClientRepository
         if (legalEntityId != null)
         {
             _legalEntities.Remove(legalEntityId);
+            Console.WriteLine($"Client removed: Id: {legalEntityId.Id}, Name: {legalEntityId.Name} {legalEntityId.Surname}");
             return;
         }
 
@@ -124,6 +124,7 @@ internal class ClientRepositoryService : IClientRepository
         if (individualId != null)
         {
             _individuals.Remove(individualId);
+            Console.WriteLine($"Client removed: Id: {individualId.Id}, Name: {individualId.Name} {individualId.Surname}");
             return;
         }
 
