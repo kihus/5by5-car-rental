@@ -1,7 +1,7 @@
 ﻿using LocadoraCarros.Contracts;
-using LocadoraCarros.Entities;
-using LocadoraCarros.Entities.Base;
 using LocadoraCarros.Entities.Enums;
+using LocadoraCarros.Models;
+using LocadoraCarros.Models.Abstractions;
 using System.Xml.Serialization;
 
 namespace LocadoraCarros.Services;

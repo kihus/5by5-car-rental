@@ -1,6 +1,6 @@
 ﻿using LocadoraCarros.Services;
 
-namespace LocadoraCarros.Entities;
+namespace LocadoraCarros.Models;
 
 internal class VehicleRental
 {

@@ -1,6 +1,6 @@
-﻿namespace LocadoraCarros.Entities.Enums
+﻿namespace LocadoraCarros.Models.Enums
 {
-    internal enum Color
+    internal enum EColor
     {
         Red = 1,
         Green = 2,

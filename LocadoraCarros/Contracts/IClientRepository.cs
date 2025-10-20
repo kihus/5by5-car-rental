@@ -1,5 +1,5 @@
-﻿using LocadoraCarros.Entities;
-using LocadoraCarros.Entities.Base;
+﻿using LocadoraCarros.Entities.Base;
+using LocadoraCarros.Models;
 
 namespace LocadoraCarros.Contracts;
 
