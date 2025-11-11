@@ -1,3 +1,4 @@
+using LocadoraCarros.Entities;
 using LocadoraCarros.Models;
 using LocadoraCarros.Models.Enums;
 using LocadoraCarros.Services;
@@ -5,17 +6,11 @@ using System.Globalization;
 
 var clientIdGeneratorService = new ClientIdGeneratorService();
 var vehicleIdGeneratorService = new VehicleIdGeneratorService();
-var rentals = new List<VehicleRental>();
-
 var rentalManager = new VehicleRental();
 
 try
 {
-    GenerateGenericCars();
-    GenerateGenericMotorCycles();
-    GenerateGenericTrucks();
-    GenerateGenericLegalEntity();
-    GenerateGenericIndividual();
+    GenericItem genericItem = new(rentalManager, vehicleIdGeneratorService, clientIdGeneratorService);
 
     var working = true;
 
@@ -67,81 +62,6 @@ catch (Exception ex)
     Console.WriteLine(ex.Message);
 }
 
-// generics Entities
-void GenerateGenericCars()
-{
-    var car = new Car(vehicleIdGeneratorService.GenerateId(), "Sandero", "Renault", 2025, EColor.Red, 138.90m, 60_000, EVehicleType.Car, "ACD1B12", 4, 5, 450, true);
-    rentalManager.VehicleManager.AddCar(car);
-
-    car = new Car(vehicleIdGeneratorService.GenerateId(), "320I", "BMW", 2020, EColor.Black, 533.70m, 100_000, EVehicleType.Car, "SFL1K12", 4, 5, 700, true);
-    rentalManager.VehicleManager.AddCar(car);
-
-    car = new Car(vehicleIdGeneratorService.GenerateId(), "Corsa", "Chevrolet", 2016, EColor.Blue, 68.90m, 300_000, EVehicleType.Car, "RFG3214", 2, 4, 300, true);
-    rentalManager.VehicleManager.AddCar(car);
-
-    car = new Car(vehicleIdGeneratorService.GenerateId(), "SW4", "Toyota", 2023, EColor.White, 408.93m, 90_000, EVehicleType.Car, "PFE9L89", 4, 7, 800, true);
-    rentalManager.VehicleManager.AddCar(car);
-
-    car = new Car(vehicleIdGeneratorService.GenerateId(), "Mobi", "FIAT", 2021, EColor.Other, 128.90m, 200_000, EVehicleType.Car, "TJA1O12", 4, 4, 200, true);
-    rentalManager.VehicleManager.AddCar(car);
-}
-void GenerateGenericMotorCycles()
-{
-    var motorcycle = new Motorcycle(vehicleIdGeneratorService.GenerateId(), "HORNET 500", "Honda", 2026, EColor.Red, 348.50m, 30_000, EVehicleType.Motocycle, "AGD1D12", 471, true, true);
-    rentalManager.VehicleManager.AddMotorcycle(motorcycle);
-
-    motorcycle = new Motorcycle(vehicleIdGeneratorService.GenerateId(), "XJ6", "Yamaha", 2015, EColor.Black, 178.50m, 120_000, EVehicleType.Motocycle, "AGJ5412", 600, true, false);
-    rentalManager.VehicleManager.AddMotorcycle(motorcycle);
-
-    motorcycle = new Motorcycle(vehicleIdGeneratorService.GenerateId(), "Ninja H2R", "Kawasaki", 2025, EColor.Blue, 545.70m, 60_000, EVehicleType.Motocycle, "AGK8D12", 998, true, true);
-    rentalManager.VehicleManager.AddMotorcycle(motorcycle);
-
-    motorcycle = new Motorcycle(vehicleIdGeneratorService.GenerateId(), "Hayabusa", "Suzuki", 2018, EColor.White, 700.50m, 100_000, EVehicleType.Motocycle, "AQD1512", 1340, true, true);
-    rentalManager.VehicleManager.AddMotorcycle(motorcycle);
-
-    motorcycle = new Motorcycle(vehicleIdGeneratorService.GenerateId(), "G 310 GS", "BMW", 2025, EColor.Silver, 228.50m, 30_000, EVehicleType.Motocycle, "AHD1D12", 313, true, false);
-    rentalManager.VehicleManager.AddMotorcycle(motorcycle);
-}
-void GenerateGenericTrucks()
-{
-    var truck = new Truck(vehicleIdGeneratorService.GenerateId(), "V260", "JAC", 2023, EColor.White, 632.50M, 125_000, EVehicleType.Truck, "AGL4F42", 3, 2, 3.1);
-    rentalManager.VehicleManager.AddTruck(truck);
-
-    truck = new Truck(vehicleIdGeneratorService.GenerateId(), "FH 460", "Volvo", 2021, EColor.Blue, 850.00M, 150_000, EVehicleType.Truck, "HDA2J99", 25, 5, 2.5);
-    rentalManager.VehicleManager.AddTruck(truck);
-
-    truck = new Truck(vehicleIdGeneratorService.GenerateId(), "P360", "Scania", 2024, EColor.Red, 990.00M, 89_000, EVehicleType.Truck, "LMN0Z11", 18, 4, 2.8);
-    rentalManager.VehicleManager.AddTruck(truck);
-
-    truck = new Truck(vehicleIdGeneratorService.GenerateId(), "Daily 35S14", "Iveco", 2022, EColor.White, 550.00M, 215_000, EVehicleType.Truck, "CXZ7H88", 3, 2, 4.0);
-    rentalManager.VehicleManager.AddTruck(truck);
-
-    truck = new Truck(vehicleIdGeneratorService.GenerateId(), "Accelo 1016", "Mercedes-Benz", 2023, EColor.Silver, 700.00M, 110_000, EVehicleType.Truck, "QRW6P55", 10, 3, 3.5);
-    rentalManager.VehicleManager.AddTruck(truck);
-}
-void GenerateGenericIndividual()
-{
-    var adress = new Adress("Rua bonito", 132, "Jabuticaba", "07243-000", "Guarulhos", "SP", "Brasil", "Casa ao lado");
-    var individual = new Individual(clientIdGeneratorService.GenerateId(), "Bruno", "Nascimento", DateTime.ParseExact("04/03/2005", "dd/MM/yyyy", CultureInfo.InvariantCulture), adress, EClientType.Individual, "123.123.123-5");
-    var individual2 = new Individual(clientIdGeneratorService.GenerateId(), "Felipe", "Pestana", DateTime.ParseExact("14/02/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture), adress, EClientType.Individual, "321.312.123-5");
-    var individual3 = new Individual(clientIdGeneratorService.GenerateId(), "Maicon", "Jequison", DateTime.ParseExact("30/12/1999", "dd/MM/yyyy", CultureInfo.InvariantCulture), adress, EClientType.Individual, "432.934.132-5");
-
-    rentalManager.ClientManager.AddClientIndividual(individual);
-    rentalManager.ClientManager.AddClientIndividual(individual2);
-    rentalManager.ClientManager.AddClientIndividual(individual3);
-}
-void GenerateGenericLegalEntity()
-{
-    var adress = new Adress("Rua bonito", 132, "Jabuticaba", "07243-000", "Guarulhos", "SP", "Brasil", "Casa ao lado");
-    var legalEntity = new LegalEntity(clientIdGeneratorService.GenerateId(), "Rogerio", "Rogerios", DateTime.ParseExact("04/03/2020", "dd/MM/yyyy", CultureInfo.InvariantCulture), adress, EClientType.LegalEntity, "11.111.111/0001-01");
-    var legalEntity2 = new LegalEntity(clientIdGeneratorService.GenerateId(), "Marcos", "Antonio", DateTime.ParseExact("04/03/2020", "dd/MM/yyyy", CultureInfo.InvariantCulture), adress, EClientType.LegalEntity, "51.551.332/0001-01");
-    var legalEntity3 = new LegalEntity(clientIdGeneratorService.GenerateId(), "Sara", "Ellen", DateTime.ParseExact("04/03/2020", "dd/MM/yyyy", CultureInfo.InvariantCulture), adress, EClientType.LegalEntity, "32.131.231/0002-43");
-
-    rentalManager.ClientManager.AddClientLegalEntity(legalEntity);
-    rentalManager.ClientManager.AddClientLegalEntity(legalEntity2);
-    rentalManager.ClientManager.AddClientLegalEntity(legalEntity3);
-}
-
 void Start()
 {
     Console.Clear();
@@ -151,15 +71,15 @@ void Start()
 void MainMenu()
 {
     Console.WriteLine("+----------------------------+");
-    Console.WriteLine("|          Main Menu         |");
+    Console.WriteLine("|      === Main Menu ===     |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  1  |        Client        |");
+    Console.WriteLine("|  1  |   Client             |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |        Vehicle       |");
+    Console.WriteLine("|  2  |   Vehicle            |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |     Vehicle Rental   |");
+    Console.WriteLine("|  3  |   Vehicle Rental     |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
+    Console.WriteLine("|  0  |   Exit               |");
     Console.WriteLine("+-----+----------------------+");
 }
 
@@ -224,15 +144,15 @@ void ClientMenuSystem()
 void ClientMenu()
 {
     Console.WriteLine("+----------------------------+");
-    Console.WriteLine("|            Client          |");
+    Console.WriteLine("|       === Client ===       |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  1  |       Register       |");
+    Console.WriteLine("|  1  |   Register           |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |        Search        |");
+    Console.WriteLine("|  2  |   Search             |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |        Remove        |");
+    Console.WriteLine("|  3  |   Remove             |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
+    Console.WriteLine("|  0  |   Exit               |");
     Console.WriteLine("+-----+----------------------+");
 }
 void RegisterClient(string op)
@@ -361,19 +281,19 @@ void RegisterClient(string op)
 void SearchClientMenu()
 {
     Console.WriteLine("+----------------------------+");
-    Console.WriteLine("|        Search Client       |");
+    Console.WriteLine("|   === Search Client ===    |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  1  |          All         |");
+    Console.WriteLine("|  1  |   All                |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |         Name         |");
+    Console.WriteLine("|  2  |   Name               |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |          Id          |");
+    Console.WriteLine("|  3  |   Id                 |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  4  |         CPF          |");
-    Console.WriteLine("+-----+----------------------+");
-    Console.WriteLine("|  5  |         CNPJ         |");
-    Console.WriteLine("+-----+----------------------+");
-    Console.WriteLine("|  0  |         Exit         |");
+    Console.WriteLine("|  4  |   CPF                |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  5  |   CNPJ               |");
+    Console.WriteLine("|-----+----------------------|");
+    Console.WriteLine("|  0  |   Exit               |");
     Console.WriteLine("+-----+----------------------+");
 }
 void SearchClient(string op)
@@ -433,15 +353,15 @@ void SearchClient(string op)
 }
 void RemoveClientMenu()
 {
-    Console.WriteLine("+-----+----------------------+");
-    Console.WriteLine("|  1  |          Id          |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |         CPF          |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |         CNPJ         |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
-    Console.WriteLine("+-----+----------------------+");
+    Console.WriteLine("+-----+----------+");
+    Console.WriteLine("|  1  |   Id     |");
+    Console.WriteLine("|-----+----------|");
+    Console.WriteLine("|  2  |   CPF    |");
+    Console.WriteLine("|-----+----------|");
+    Console.WriteLine("|  3  |   CNPJ   |");
+    Console.WriteLine("|-----+----------|");
+    Console.WriteLine("|  0  |   Exit   |");
+    Console.WriteLine("+-----+----------+");
 }
 void RemoveClient(string optiones)
 {
@@ -532,17 +452,17 @@ void VehicleMenuSystem()
 }
 void VehicleMenu()
 {
-    Console.WriteLine("+----------------------------+");
-    Console.WriteLine("|         Vehicle Menu       |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  1  |       Register       |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |        Search        |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |        Remove        |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
-    Console.WriteLine("+-----+----------------------+");
+    Console.WriteLine("+-----------------------------+");
+    Console.WriteLine("|     === Vehicle Menu ===    |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  1  |   Register            |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  2  |   Search              |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  3  |   Remove              |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  0  |   Exit                |");
+    Console.WriteLine("+-----+-----------------------+");
 }
 void RegisterVehicle(string op)
 {
@@ -684,23 +604,23 @@ void RegisterVehicle(string op)
 void SearchVehicleMenu()
 {
     Console.WriteLine("+----------------------------+");
-    Console.WriteLine("|        Search Vehicle      |");
+    Console.WriteLine("|   === Search Vehicle ===   |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  1  |          All         |");
+    Console.WriteLine("|  1  |   All                |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |         Model        |");
+    Console.WriteLine("|  2  |   Model              |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |         Year         |");
+    Console.WriteLine("|  3  |   Year               |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  4  |     Manufacturer     |");
-    Console.WriteLine("+-----+----------------------+");
-    Console.WriteLine("|  5  |       All cars       |");
+    Console.WriteLine("|  4  |   Manufacturer       |");
+    Console.WriteLine("+-----+----------------------|");
+    Console.WriteLine("|  5  |   All cars           |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  6  |     All Motorcycles  |");
+    Console.WriteLine("|  6  |   All Motorcycles    |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  7  |       All trucks     |");
+    Console.WriteLine("|  7  |   All trucks         |");
     Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
+    Console.WriteLine("|  0  |   Exit               |");
     Console.WriteLine("+-----+----------------------+");
 }
 void SearchVehicle(string optiones)
@@ -761,13 +681,13 @@ void SearchVehicle(string optiones)
 }
 void RemoveVehicleMenu()
 {
-    Console.WriteLine("+-----+----------------------+");
-    Console.WriteLine("|  1  |          Id          |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |         Model        |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
-    Console.WriteLine("+-----+----------------------+");
+    Console.WriteLine("+-----+--------+");
+    Console.WriteLine("|  1  |   Id   |");
+    Console.WriteLine("|-----+--------|");
+    Console.WriteLine("|  2  |  Model |");
+    Console.WriteLine("|-----+--------|");
+    Console.WriteLine("|  0  |  Exit  |");
+    Console.WriteLine("+-----+--------+");
 }
 void RemoveVehicle(string opt)
 {
@@ -834,17 +754,17 @@ void VehicleRentalMenuSystem()
 }
 void VehicleRentalMenu()
 {
-    Console.WriteLine("+----------------------------+");
-    Console.WriteLine("|        Vehicle Rental      |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  1  |  Available Vehicles  |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  2  |      Rent Vehicle    |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  3  |  Return The Vehicle  |");
-    Console.WriteLine("|-----+----------------------|");
-    Console.WriteLine("|  0  |         Exit         |");
-    Console.WriteLine("+-----+----------------------+");
+    Console.WriteLine("+-----------------------------+");
+    Console.WriteLine("|    === Vehicle Rental ===   |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  1  |  Available Vehicles   |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  2  |  Rent Vehicle         |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  3  |  Return The Vehicle   |");
+    Console.WriteLine("|-----+-----------------------|");
+    Console.WriteLine("|  0  |  Exit                 |");
+    Console.WriteLine("+-----+-----------------------+");
 }
 void RentVehicle()
 {
