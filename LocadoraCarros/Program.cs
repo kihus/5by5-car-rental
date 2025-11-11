@@ -155,9 +155,9 @@ void ClientMenu()
     Console.WriteLine("|  0  |   Exit               |");
     Console.WriteLine("+-----+----------------------+");
 }
-void RegisterClient(string op)
+void RegisterClient(string option)
 {
-    switch (op)
+    switch (option)
     {
         case "1":
             Console.Write("Name: ");
@@ -296,9 +296,9 @@ void SearchClientMenu()
     Console.WriteLine("|  0  |   Exit               |");
     Console.WriteLine("+-----+----------------------+");
 }
-void SearchClient(string op)
+void SearchClient(string option)
 {
-    switch (op)
+    switch (option)
     {
         case "1":
             rentalManager.GetAllClients();
@@ -363,9 +363,9 @@ void RemoveClientMenu()
     Console.WriteLine("|  0  |   Exit   |");
     Console.WriteLine("+-----+----------+");
 }
-void RemoveClient(string optiones)
+void RemoveClient(string option)
 {
-    switch (optiones)
+    switch (option)
     {
         case "1":
             Console.Write("Enter id: ");
@@ -464,9 +464,9 @@ void VehicleMenu()
     Console.WriteLine("|  0  |   Exit                |");
     Console.WriteLine("+-----+-----------------------+");
 }
-void RegisterVehicle(string op)
+void RegisterVehicle(string option)
 {
-    switch (op)
+    switch (option)
     {
         // melhorar*
         case "1":
@@ -623,9 +623,9 @@ void SearchVehicleMenu()
     Console.WriteLine("|  0  |   Exit               |");
     Console.WriteLine("+-----+----------------------+");
 }
-void SearchVehicle(string optiones)
+void SearchVehicle(string option)
 {
-    switch (optiones)
+    switch (option)
     {
         case "1":
             rentalManager.VehicleManager.GetAll();
@@ -689,9 +689,9 @@ void RemoveVehicleMenu()
     Console.WriteLine("|  0  |  Exit  |");
     Console.WriteLine("+-----+--------+");
 }
-void RemoveVehicle(string opt)
+void RemoveVehicle(string option)
 {
-    switch (opt)
+    switch (option)
     {
         case "1":
             Console.Write("Enter id: ");
